@@ -4,6 +4,8 @@ on:
   schedule:
     # Lunes a viernes a las 6:00 AM hora de Colombia (11:00 UTC)
     - cron: '0 11 * * 1-5'
+    # Viernes de 5:00 PM a 8:00 PM hora de Colombia (22:00 UTC)
+    - cron: '0 22 * * 5'
   workflow_dispatch:
 
 jobs:
