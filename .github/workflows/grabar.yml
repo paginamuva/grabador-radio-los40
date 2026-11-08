@@ -26,7 +26,13 @@ jobs:
       - name: 4. Configurar credenciales de rclone
         run: |
           mkdir -p ~/.config/rclone
-          echo "${{ secrets.RCLONE_CONF }}" > ~/.config/rclone/rclone.conf
+          cat << 'EOF' > ~/.config/rclone/rclone.conf
+          [google drive]
+          type = drive
+          scope = drive
+          token = {"access_token":"ya29.a0AehfTOnZA25WufLzlCN6eUMufANknoS1G0KedV0dfHfVgUVNoBaunw1NTFbNGlnUfJ7Nt4Gp58sUt53oZiSHDmkPVsRnnNDCqM54PGmUEmX79hSyLNWJejmsEdXNzsE_jEwtRX6UR6lMIYRht2EkJK4t9rYj-jXCYNAJC8f5AfkR9j6YCQgQLivX4zWGPJQfyosLlW0aCgYKAZwSARUSFQHGX2Mi4Ai6Cy4tdPJf8Mo_Wg40Xw0206","token_type":"Bearer","refresh_token":"1//05JLg4vTrr6WYCgYIARAAGAUSNwF-L9IrWDYC6oDIG3YGZxpZMkFq_hNbTb9890kuHKYHAb2VVkq6Lt-AvICuE0X3iDpUFbkA7IE","expiry":"2026-11-07T20:28:12.8455125-05:00","expires_in":3599}
+          team_drive = 
+          EOF
 
       - name: 5. Ejecutar script de grabación
         run: python grabar.py
