@@ -31,6 +31,6 @@ jobs:
       - name: 5. Ejecutar script de grabación
         run: python grabar.py
 
-      - name: 6. Subir archivo a Google Drive
+     - name: 6. Subir archivo a Google Drive
         run: |
-          rclone copy *.mp3 gdrive:GrabacionesRadio/ --progress
+          rclone --config ~/.config/rclone/rclone.conf copy *.mp3 "google drive:GrabacionesRadio/" --progress
