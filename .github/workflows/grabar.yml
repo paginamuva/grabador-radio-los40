@@ -33,4 +33,4 @@ jobs:
 
       - name: 6. Subir archivo a Google Drive
         run: |
-          rclone copy *.mp3 gdrive:GrabacionesRadio/ --progresss
+          rclone copy *.mp3 gdrive:GrabacionesRadio/ --progress
