@@ -3,7 +3,7 @@ import datetime
 
 STREAM_URL = "https://27593.live.streamtheworld.com/LOS40_VILLAO.mp3"
 # 4 horas y 30 minutos = 16200 segundos
-DURACION_SEGUNDOS = 70  
+DURACION_SEGUNDOS = 600  
 
 fecha_hoy = (datetime.datetime.utcnow() - datetime.timedelta(hours=5)).strftime("%Y-%m-%d")
 nombre_archivo = f"Los40_Villavicencio_{fecha_hoy}.mp3"
