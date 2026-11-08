@@ -1,0 +1,36 @@
+name: Grabador Automatico Los 40
+
+on:
+  schedule:
+    # Lunes a viernes a las 6:00 AM hora de Colombia (11:00 UTC)
+    - cron: '0 11 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  grabar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: 2. Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: 3. Instalar dependencias (FFmpeg y rclone)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg rclone
+
+      - name: 4. Configurar credenciales de rclone
+        run: |
+          mkdir -p ~/.config/rclone
+          echo "${{ secrets.RCLONE_CONF }}" > ~/.config/rclone/rclone.conf
+
+      - name: 5. Ejecutar script de grabación
+        run: python grabar.py
+
+      - name: 6. Subir archivo a Google Drive
+        run: |
+          rclone --config ~/.config/rclone/rclone.conf copy *.mp3 "google drive:GrabacionesRadio/" --progress
